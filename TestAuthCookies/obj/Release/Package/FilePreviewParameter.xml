@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="InlineConnectorSample20170811111834" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\nigarg\\Documents\\Visual\ Studio\ 2015\\Projects\\TestAuthCookies\\TestAuthCookies\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\nigarg\\Documents\\Visual\ Studio\ 2015\\Projects\\TestAuthCookies\\TestAuthCookies\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Server=tcp:inlineconfigdb.database.windows.net,1433;Initial Catalog=inlineconfigsample;Persist Security Info=False;User ID=inlineconfigadmin;Password=J$p1ter@1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\nigarg\\Documents\\Visual\ Studio\ 2015\\Projects\\TestAuthCookies\\TestAuthCookies\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

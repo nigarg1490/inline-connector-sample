@@ -1,0 +1,14 @@
+﻿@using TestAuthCookies.Models
+@model PostConsentViewModel
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        var redirectUrl = "@Html.Raw(@Model.RedirectUrl)";
+        microsoftTeams.initialize();
+        microsoftTeams.authentication.notifySuccess("authResult", redirectUrl);
+    </script>
+}
+

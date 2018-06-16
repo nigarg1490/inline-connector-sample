@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2></h2>
+<h3></h3>
+
+<p>Select one of the following configuration options</p>
+
+<div class="col-md-8">
+    <section id="loginForm">
+        <form id="configForm">
+            <input type="radio" name="maptype" value="bing" onclick="onClick()"> Bing Maps
+            <br>
+            <input type="radio" name="maptype" value="google" onclick="onClick()"> Google Maps
+        </form>
+    </section>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        function onClick() {
+            microsoftTeams.settings.setValidityState(true);
+        }
+        microsoftTeams.initialize();
+        microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
+            var radios = document.getElementsByName('maptype');
+            var url = saveEvent.result["webhookUrl"];
+
+            /* 3rd party will save this configuration here using the user selected options and data sent by us: 
+                saveEvent.result["webhookUrl"]
+            */
+
+            if (radios[0].checked) {
+                microsoftTeams.settings.setSettings({
+                    entityId: "bing",
+                    contentUrl: "https://localhost:44318/Home/About",
+                    configName: "Bing Map"
+                });
+            } else {
+                microsoftTeams.settings.setSettings({
+                    entityId: "google",
+                    contentUrl: "https://localhost:44318/Home/About",
+                    configName: "Google Map"
+                });
+            }
+
+            microsoftTeams.settings.getSettings(function (settings) {
+            });
+
+
+            /*
+            They can also call office365Connectors.settings.getSettings(function(settings) { ...  }) anytime to get all of the below data (whatever is availabled based on whent the call is made):
+            //TODO: Change names to camelCase
+            1. EntityId
+            2. FriendlyName
+            3. ConfigurationContentUrl (#bug - will be changed to contentUrl)
+            4. WebhookUrl
+            5. EmailAddress
+            6. ChannelId
+            7. AppType
+            8. UserObjectId
+            */
+
+            saveEvent.notifySuccess();
+        });
+
+        microsoftTeams.settings.registerOnRemoveHandler(function(removeEvent) {
+            var removeCalled = true;
+        });
+
+    </script>
+}

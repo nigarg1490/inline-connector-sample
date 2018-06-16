@@ -1,0 +1,36 @@
+﻿@using TestAuthCookies.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+
+    <div class="col-md-8" id="googleAuth">
+        <section id="loginForm">
+            <button onclick="refresh()" class="btn btn-default" id="Google" name="provider" value="Authenticate" title="Authenticate using identity provider">Authenticate</button>
+        </section>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        microsoftTeams.initialize();
+        var refresh = function () {
+            microsoftTeams.authentication.authenticate({
+                url: "https://inlineconnectorsample20170811111834.azurewebsites.net/Account/Login_inline",
+                width: 400,
+                height: 400,
+                successCallback: function (t) {
+                    window.location.href = '@Url.Action("About", "Home")';
+                },
+                failureCallback: function (err) {
+                    document.getElementById("message").innerText(err);
+                }
+            });
+        }
+    </script>
+}
